@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DICOCHAT - Admin Kirish</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="auth-container">
+        <h1>ADMIN PANEL</h1>
+        <p style="margin-bottom: 20px; color: var(--text-muted);">Maxfiy kodni kiriting.</p>
+        <form id="admin-login-form">
+            <input type="password" id="admin-code" placeholder="Kod*" required>
+            <button type="submit">Kirish</button>
+        </form>
+        <div id="error-msg" style="color: #ef4444; margin-top: 10px;"></div>
+    </div>
+
+    <script>
+        const BACKEND_URL = "https://dicochat-backend.onrender.com"; // Replace after deployment
+        const apiBase = window.location.hostname === 'localhost' ? '' : BACKEND_URL;
+
+        document.getElementById('admin-login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const code = document.getElementById('admin-code').value;
+
+            const res = await fetch(`${apiBase}/api/admin-login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ code })
+            });
+
+            const data = await res.json();
+            if (data.success) {
+                window.location.href = '/admin-dashboard';
+            } else {
+                document.getElementById('error-msg').textContent = data.message;
+            }
+        });
+    </script>
+</body>
+
+</html>

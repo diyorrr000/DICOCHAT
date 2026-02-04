@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DICOCHAT - Umumiy guruh</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+    <div class="chat-wrapper">
+        <div class="sidebar">
+            <h2>Onlayn</h2>
+            <div id="online-list" class="online-users-list">
+                <!-- Foydalanuvchilar ro'yxati -->
+            </div>
+            <div style="margin-top: auto; padding-top: 10px; border-top: 1px solid var(--border-color);">
+                <p style="font-size: 0.8rem; color: var(--text-muted);">Jami: <span id="online-count">0</span></p>
+            </div>
+        </div>
+
+        <div class="main-chat">
+            <div class="chat-header">
+                <div>
+                    <h1 style="font-size: 1.2rem; color: var(--accent-color);">DICOCHAT</h1>
+                </div>
+                <div>
+                    <span id="my-nick" style="font-weight: bold;"></span>
+                    <span id="my-xp-badge"
+                        style="background: var(--xp-color); color: black; padding: 2px 8px; border-radius: 10px; font-size: 0.8rem; margin-left: 10px;">0
+                        XP</span>
+                </div>
+            </div>
+
+            <div id="messages" class="messages-container">
+                <!-- Xabarlar -->
+            </div>
+
+            <div id="typing-indicator"
+                style="padding: 0 1.5rem; font-size: 0.8rem; height: 20px; color: var(--text-muted);"></div>
+
+            <form id="chat-form" class="input-area">
+                <input type="text" id="msg-input" placeholder="Xabar yozing..." autocomplete="off">
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

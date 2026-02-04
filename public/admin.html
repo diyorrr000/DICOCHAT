@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DICOCHAT - Admin Panel</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <style>
+        body {
+            overflow-y: auto;
+        }
+
+        .admin-nav {
+            background: var(--panel-bg);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        .stats-banner {
+            display: flex;
+            gap: 2rem;
+            padding: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: var(--panel-bg);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-card h2 {
+            color: var(--accent-color);
+            font-size: 2rem;
+        }
+
+        .stat-card p {
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="admin-nav">
+        <h1>DICOCHAT Admin</h1>
+        <button onclick="logout()" class="btn-small btn-danger">Chiqish</button>
+    </nav>
+
+    <div class="stats-banner">
+        <div class="stat-card">
+            <h2 id="total-users-count">0</h2>
+            <p>Jami foydalanuvchilar</p>
+        </div>
+        <div class="stat-card">
+            <h2 id="online-users-count">0</h2>
+            <p>Hozir onlayn</p>
+        </div>
+    </div>
+
+    <div class="admin-grid">
+        <!-- Announcements -->
+        <div class="card">
+            <h3>Tizim e'loni</h3>
+            <textarea id="announce-text"
+                style="width:100%; height:80px; background:var(--bg-color); color:white; border:1px solid var(--border-color); border-radius:5px; padding:10px;"
+                placeholder="Barcha foydalanuvchilarga xabar yuborish..."></textarea>
+            <button onclick="sendAnnounce()" class="btn-success"
+                style="width:100%; margin-top:10px; padding:10px; border-radius:5px; border:none; font-weight:bold; cursor:pointer;">Yuborish</button>
+        </div>
+
+        <!-- Activity Log -->
+        <div class="card" style="grid-row: span 2;">
+            <h3>Faoliyat tarixi</h3>
+            <div id="activity-log" style="height: 400px; overflow-y: auto; font-size: 0.85rem;">
+                <!-- Loglar -->
+            </div>
+        </div>
+
+        <!-- Top Users & Management -->
+        <div class="card" style="grid-column: span 1;">
+            <h3>Top Foydalanuvchilar</h3>
+            <table id="top-users-table">
+                <thead>
+                    <tr>
+                        <th>Taxallus</th>
+                        <th>XP</th>
+                        <th>Xabarlar</th>
+                        <th>Amallar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Foydalanuvchilar -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+    <script>
+        function logout() {
+            // Simple approach: clear local session or just redirect
+            window.location.href = '/admin-login.html';
+        }
+    </script>
+</body>
+
+</html>

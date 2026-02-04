@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DICOCHAT - Kirish</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="auth-container">
+        <h1>DICOCHAT</h1>
+        <p style="margin-bottom: 20px; color: var(--text-muted);">Xush kelibsiz! Iltimos, suhbatlashish uchun taxallus (nickname) tanlang.</p>
+        <form id="login-form">
+            <input type="text" id="nickname" placeholder="Taxallusingizni kiriting..." required minlength="3" maxlength="15">
+            <button type="submit">Kirish</button>
+        </form>
+        <div id="error-msg" style="color: #ef4444; margin-top: 10px;"></div>
+    </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const nickname = document.getElementById('nickname').value.trim();
+            if (nickname) {
+                localStorage.setItem('dico_nickname', nickname);
+                window.location.href = 'chat.html';
+            }
+        });
+
+        // If already disconnected from chat with error, show it
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('error')) {
+            document.getElementById('error-msg').textContent = urlParams.get('error');
+        }
+    </script>
+</body>
+</html>
