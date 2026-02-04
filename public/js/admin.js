@@ -1,5 +1,5 @@
 // Production backend URL (Render)
-const BACKEND_URL = "https://dicochat-backend.onrender.com"; // Replace after deployment
+const BACKEND_URL = "https://dicochat.onrender.com"; // Updated with actual URL
 const socket = io(window.location.hostname === 'localhost' ? '' : BACKEND_URL);
 
 // Join admin room for real-time updates
